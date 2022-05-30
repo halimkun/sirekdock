@@ -15,17 +15,52 @@ class MigratePengajuan extends Migration
                 'unsigned'       => true,
                 'auto_increment' => true,
             ],
-            'email'       => [
+            'token'          => [
+                'type'       => 'INT',
+                'constraint' => 11,
+                
+            ],
+            'status'          => [
+                'type'       => 'VARCHAR',
+                'constraint' => 255,
+                
+            ],
+            // ----------
+            'nomor_dokumen' => [
+                'type'       => 'VARCHAR',
+                'constraint' => 255,
+                'null'       => true,
+                
+            ],
+            'berlaku_sampai' => [
+                'type'       => 'DATE',
+                'null'       => true,
+            ],
+            // ----------
+            'nama'       => [
                 'type'       => 'VARCHAR',
                 'constraint' => '255',
             ],
+            'jabatan'       => [
+                'type'       => 'VARCHAR',
+                'constraint' => '255',
+            ],
+            'lembaga'       => [
+                'type'       => 'VARCHAR',
+                'constraint' => '255',
+            ],
+            'fakultas'       => [
+                'type'       => 'VARCHAR',
+                'constraint' => '255',
+            ],
+            // -----------
             'nama_dokumen' => [
                 'type'       => 'VARCHAR',
                 'constraint' => '255',
             ],
             'revisi'      => [
-                'type'       => 'INT',
-                'constraint' => '11',
+                'type'       => 'VARCHAR',
+                'constraint' => '50',
             ],
             'revisi_manual' => [
                 'type'       => 'VARCHAR',
@@ -47,11 +82,10 @@ class MigratePengajuan extends Migration
                 'type'       => 'VARCHAR',
                 'constraint' => '255',
             ],
-            'validasi'     => [
-                'type'       => 'VARCHAR',
-                'constraint' => '255',
-                'null'       => true,
-            ],
+            // 'validasi'     => [
+            //     'type'       => 'VARCHAR',
+            //     'constraint' => '255',
+            // ],
             'created_at'   => [
                 'type' => 'DATETIME',
                 'null' => true,

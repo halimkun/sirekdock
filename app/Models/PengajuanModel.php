@@ -14,7 +14,11 @@ class PengajuanModel extends Model
     protected $returnType       = 'object';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ["email", "nama_dokumen", "revisi", "revisi_manual", "tanggal", "halaman", "paragraf", "rasional", "validasi"];
+    protected $allowedFields    = [
+        'token', 'status', 'nomor_dokumen', 'berlaku_sampai', 'nama', 'jabatan',
+        'lembaga', 'fakultas', 'nama_dokumen', 'revisi', 'revisi_manual', 'tanggal',
+        'paragraf', 'rasional', 'validasi'
+    ];
 
     // Dates
     protected $useTimestamps = true;
