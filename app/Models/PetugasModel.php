@@ -4,10 +4,10 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class PengajuanModel extends Model
+class PetugasModel extends Model
 {
     protected $DBGroup          = 'default';
-    protected $table            = 'pengajuan';
+    protected $table            = 'petugas';
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
     protected $insertID         = 0;
@@ -15,9 +15,7 @@ class PengajuanModel extends Model
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
     protected $allowedFields    = [
-        'token', 'status', 'nomor_dokumen', 'berlaku_sampai', 'nama', 'jabatan',
-        'lembaga', 'fakultas', 'nama_dokumen', 'revisi', 'revisi_manual', 'tanggal',
-        'paragraf', 'rasional', 'halaman', 'lampirkan_validasi_selesai', 'validasi_selesai',
+        'token', 'nama', 'username', 'email',
     ];
 
     // Dates

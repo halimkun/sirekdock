@@ -15,7 +15,7 @@
         </tr>
         <tr>
             <td style="border: 1px solid black; border-collapse: collapse;"><strong>No. Dokumen</strong></td>
-            <td style="border: 1px solid black; border-collapse: collapse;">: </td>
+            <td style="border: 1px solid black; border-collapse: collapse;">: <?= $data->nomor_dokumen ?></td>
         </tr>
         <tr>
             <td style="border: 1px solid black; border-collapse: collapse;"><strong>Revisi</strong></td>
@@ -23,7 +23,7 @@
         </tr>
         <tr>
             <td style="border: 1px solid black; border-collapse: collapse;"><strong>Berlaku Tanggal</strong></td>
-            <td style="border: 1px solid black; border-collapse: collapse;">: </td>
+            <td style="border: 1px solid black; border-collapse: collapse;">: <?= $data->berlaku_sampai ?></td>
         </tr>
     </tbody>
 </table>
@@ -64,7 +64,13 @@
             </tr>
             <tr>
                 <td style="border: none; border-collapse: collapse;">Revisi</td>
-                <td style="border: none; border-collapse: collapse;">: <?= $data->revisi ?></td>
+                <td style="border: none; border-collapse: collapse;">:
+                    <?php if ($data->revisi == "lainnya") : ?>
+                        <?= $data->revisi_manual ?>
+                    <?php else : ?>
+                        <?= $data->revisi ?>
+                    <?php endif ?>
+                </td>
             </tr>
             <tr>
                 <td style="border: none; border-collapse: collapse;">Tanggal dan Tahun Pengusulan</td>

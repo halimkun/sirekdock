@@ -16,8 +16,8 @@ class MigratePengajuan extends Migration
                 'auto_increment' => true,
             ],
             'token'          => [
-                'type'       => 'INT',
-                'constraint' => 11,
+                'type'       => 'VARCHAR',
+                'constraint' => 50,
                 
             ],
             'status'          => [
@@ -33,8 +33,8 @@ class MigratePengajuan extends Migration
                 
             ],
             'berlaku_sampai' => [
-                'type'       => 'DATE',
-                'null'       => true,
+                'type' => 'DATE',
+                'null' => true,
             ],
             // ----------
             'nama'       => [
@@ -82,10 +82,17 @@ class MigratePengajuan extends Migration
                 'type'       => 'VARCHAR',
                 'constraint' => '255',
             ],
-            // 'validasi'     => [
-            //     'type'       => 'VARCHAR',
-            //     'constraint' => '255',
-            // ],
+            // ---------
+            'lampirkan_validasi_selesai'     => [
+                'type'       => 'VARCHAR',
+                'constraint' => '255',
+            ],
+            'validasi_selesai'     => [
+                'type'       => 'VARCHAR',
+                'constraint' => '255',
+                'null'       => true,
+            ],
+            // ---------
             'created_at'   => [
                 'type' => 'DATETIME',
                 'null' => true,

@@ -23,7 +23,6 @@ class Pengajuan extends BaseController
     {
         // $file = $this->request->getFile('validasi');
         // $file_name = $file->getRandomName();
-        $token = rand(1000000000, 9999999999);
 
         if ($this->request->getPost('revisi') == "lainnya") {
             $revisi_manual = $this->request->getPost('revisi_manual');
@@ -32,7 +31,7 @@ class Pengajuan extends BaseController
         }
 
         $data = [
-            'token'  => $token,
+            'token'  => rand(10000000000, 99999999999),
             'status' => 'proses',
             // ----------
             'nama'     => $this->request->getPost('nama'),
@@ -48,6 +47,9 @@ class Pengajuan extends BaseController
             'halaman'       => $this->request->getPost('halaman'),
             'paragraf'      => $this->request->getPost('paragraf'),
             'rasional'      => $this->request->getPost('rasional'),
+            // -----------
+            'lampirkan_validasi_selesai' => 'no',
+            'validasi_selesai'           => null,
         ];
 
         $url = "/page/token/" . $data['token'] . "?pesan=";
@@ -56,6 +58,58 @@ class Pengajuan extends BaseController
             return redirect()->to($url . "success");
         } else {
             return redirect()->to($url . "failed");
+        }
+    }
+
+    public function update()
+    {
+        // cek nomor dokumen
+        if ($this->request->getPost('nomor_dokumen') == "" || $this->request->getPost('nomor_dokumen') == null) {
+            $nomor_dokumen = null;
+        } else {
+            $nomor_dokumen = $this->request->getPost('nomor_dokumen');
+        }
+
+        if ($this->request->getPost('lampirkan_validasi') == "yes") {
+            $file = $this->request->getFile('validasi_selesai');
+            $file_name = $file->getRandomName();
+        } else {
+            $file_name = null;
+        }
+
+        $data = [
+            'id'                         => $this->request->getPost('randomEdit'),
+            'status'                     => $this->request->getPost('status'),
+            'nomor_dokumen'              => $nomor_dokumen,
+            'berlaku_sampai'             => $this->request->getPost('berlaku_sampai'),
+            'lampirkan_validasi_selesai' => $this->request->getPost('lampirkan_validasi'),
+            'validasi_selesai'           => $file_name,
+        ];
+
+        if ($this->pengajuan->save($data)) {
+            if ($this->request->getPost('lampirkan_validasi') == "yes") {
+                $file->move(ROOTPATH . 'public/uploads/validasi_selesai/');
+            }
+            session()->setFlashdata('success', 'Data berhasil diubah');
+            return redirect()->to("/admin/pengajuan");
+        } else {
+            session()->setFlashdata('failed', 'Data gagal diubah');
+            return redirect()->to("/admin/pengajuan");
+        }
+    }
+
+    public function del($id = null)
+    {
+        if ($id == null) {
+            return redirect()->to('/admin/pengajuan');
+        } else {
+            if ($this->pengajuan->delete($id)) {
+                session()->setFlashdata('success', 'Data berhasil dihapus');
+                return redirect()->to('/admin/pengajuan');
+            } else {
+                session()->setFlashdata('failed', 'Data gagal dihapus');
+                return redirect()->to('/admin/pengajuan');
+            }
         }
     }
 }
