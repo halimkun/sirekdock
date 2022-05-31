@@ -15,7 +15,7 @@
         </tr>
         <tr>
             <td style="border: 1px solid black; border-collapse: collapse;"><strong>No. Dokumen</strong></td>
-            <td style="border: 1px solid black; border-collapse: collapse;">: <?= $data->nomor_dokumen ?></td>
+            <td style="border: 1px solid black; border-collapse: collapse;">: <?= $data->nomor_dokumen == null ? '' : $data->nomor_dokumen ?></td>
         </tr>
         <tr>
             <td style="border: 1px solid black; border-collapse: collapse;"><strong>Revisi</strong></td>

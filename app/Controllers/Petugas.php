@@ -21,6 +21,15 @@ class Petugas extends BaseController
 
     public function add()
     {
+        if (!isset($_COOKIE['token'])) {
+            echo "TOKEN TIDAK ADA";
+            return redirect()->to(base_url());
+        } else {
+            if ($this->petugas->where('token', $_COOKIE['token'])->find() == null) {
+                return redirect()->to(base_url());
+            }
+        }
+
         $data = [
             'token' => rand(10000000000, 99999999999),
             'nama'     => $this->request->getPost('nama'),
@@ -39,6 +48,15 @@ class Petugas extends BaseController
 
     public function update()
     {
+        if (!isset($_COOKIE['token'])) {
+            echo "TOKEN TIDAK ADA";
+            return redirect()->to(base_url());
+        } else {
+            if ($this->petugas->where('token', $_COOKIE['token'])->find() == null) {
+                return redirect()->to(base_url());
+            }
+        }
+
         $data = [
             'id'    => $this->request->getPost('randomEdit'),
             'nama'  => $this->request->getPost('nama'),
@@ -56,6 +74,15 @@ class Petugas extends BaseController
 
     public function delete($id = null)
     {
+        if (!isset($_COOKIE['token'])) {
+            echo "TOKEN TIDAK ADA";
+            return redirect()->to(base_url());
+        } else {
+            if ($this->petugas->where('token', $_COOKIE['token'])->find() == null) {
+                return redirect()->to(base_url());
+            }
+        }
+        
         if ($id == null) {
             return redirect()->to('/admin/petugas');
         } else {

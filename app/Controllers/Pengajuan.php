@@ -4,14 +4,17 @@ namespace App\Controllers;
 
 use App\Controllers\BaseController;
 use App\Models\PengajuanModel;
+use App\Models\PetugasModel;
 
 class Pengajuan extends BaseController
 {
     protected $pengajuan;
+    protected $petugas;
 
     public function __construct()
     {
         $this->pengajuan = new PengajuanModel();
+        $this->petugas = new PetugasModel();
     }
 
     public function index()
@@ -21,6 +24,7 @@ class Pengajuan extends BaseController
 
     public function submit()
     {
+
         // $file = $this->request->getFile('validasi');
         // $file_name = $file->getRandomName();
 
@@ -63,6 +67,15 @@ class Pengajuan extends BaseController
 
     public function update()
     {
+        if (!isset($_COOKIE['token'])) {
+            echo "TOKEN TIDAK ADA";
+            return redirect()->to(base_url());
+        } else {
+            if ($this->petugas->where('token', $_COOKIE['token'])->find() == null) {
+                return redirect()->to(base_url());
+            }
+        }
+
         // cek nomor dokumen
         if ($this->request->getPost('nomor_dokumen') == "" || $this->request->getPost('nomor_dokumen') == null) {
             $nomor_dokumen = null;
@@ -100,6 +113,15 @@ class Pengajuan extends BaseController
 
     public function del($id = null)
     {
+        if (!isset($_COOKIE['token'])) {
+            echo "TOKEN TIDAK ADA";
+            return redirect()->to(base_url());
+        } else {
+            if ($this->petugas->where('token', $_COOKIE['token'])->find() == null) {
+                return redirect()->to(base_url());
+            }
+        }
+        
         if ($id == null) {
             return redirect()->to('/admin/pengajuan');
         } else {

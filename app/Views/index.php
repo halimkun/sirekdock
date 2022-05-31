@@ -17,8 +17,31 @@
                             CEK STATUS
                         </button>
                     </div>
+                    <div class="mx-3 mt-2">
+                        <a href="#!" data-bs-toggle="modal" data-bs-target="#login">login petugas</a>
+                    </div>
                 </div>
                 <div class="col-md-6 col-lg-6 col-xl-6"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="login" tabindex="-1" aria-labelledby="loginLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="loginLabel">Login Petugas</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="/auth/login" method="post">
+                    <div class="form-group mb-3">
+                        <label for="token" class="form-label">Token</label>
+                        <input type="number" name="token" id="token" class="form-control">
+                    </div>
+                    <button type="submit" class="btn btn-dark">LOGIN</button>
+                </form>
             </div>
         </div>
     </div>

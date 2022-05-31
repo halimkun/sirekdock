@@ -19,6 +19,15 @@ class Admin extends BaseController
 
     public function index()
     {
+        if (!isset($_COOKIE['token'])) {
+            echo "TOKEN TIDAK ADA";
+            return redirect()->to(base_url());
+        } else {
+            if ($this->petugas->where('token', $_COOKIE['token'])->find() == null) {
+                return redirect()->to(base_url());
+            }
+        }
+
         return view('admin/index', [
             'pengajuan' => $this->pengajuan->findAll(),
             'pengajuan_selesai' => $this->pengajuan->where(['status' => 'selesai'])->findAll(),
@@ -30,6 +39,15 @@ class Admin extends BaseController
 
     public function pengajuan()
     {
+        if (!isset($_COOKIE['token'])) {
+            echo "TOKEN TIDAK ADA";
+            return redirect()->to(base_url());
+        } else {
+            if ($this->petugas->where('token', $_COOKIE['token'])->find() == null) {
+                return redirect()->to(base_url());
+            }
+        }
+
         return view('admin/pengajuan', [
             'datas' => $this->pengajuan->findAll()
         ]);
@@ -37,6 +55,15 @@ class Admin extends BaseController
 
     public function petugas()
     {
+        if (!isset($_COOKIE['token'])) {
+            echo "TOKEN TIDAK ADA";
+            return redirect()->to(base_url());
+        } else {
+            if ($this->petugas->where('token', $_COOKIE['token'])->find() == null) {
+                return redirect()->to(base_url());
+            }
+        }
+
         return view('admin/petugas', [
             'datas' => $this->petugas->findAll()
         ]);
@@ -44,6 +71,15 @@ class Admin extends BaseController
 
     public function panduan()
     {
+        if (!isset($_COOKIE['token'])) {
+            echo "TOKEN TIDAK ADA";
+            return redirect()->to(base_url());
+        } else {
+            if ($this->petugas->where('token', $_COOKIE['token'])->find() == null) {
+                return redirect()->to(base_url());
+            }
+        }
+        
         return view('admin/panduan');
     }
 }

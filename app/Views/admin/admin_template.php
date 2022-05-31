@@ -42,9 +42,8 @@
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 <?php if (isset($_COOKIE['token'])) : ?>
-                                    <?= $_COOKIE['name'] ?>
+                                    <?= $_COOKIE['username'] ?>
                                 <?php endif ?>
-                                User
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                                 <a class="dropdown-item" href="/auth/out">Log Out</a>
